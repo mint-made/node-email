@@ -3,14 +3,12 @@ import { Button, Container, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 function App() {
-  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const formSubmitHandler = async (e) => {
     e.preventDefault();
     const formData = {
-      fullName,
       email,
       subject,
       message,
@@ -27,24 +25,16 @@ function App() {
 
   return (
     <>
-      <Container className='p-1'>
-        <p className='text-center'>Sending Emails with Node</p>
+      <Container className='p-3'>
+        <h2 className='text-center mb-3'>Sending Emails with Node</h2>
 
-        <Container className='p-1 border rounded' style={{ maxWidth: '600px' }}>
-          <h5>Contact Form </h5>
+        <Container className='p-3 border rounded' style={{ maxWidth: '600px' }}>
+          <h5>Send an email to yourself</h5>
           <Form onSubmit={(e) => formSubmitHandler(e)}>
             <Form.Group className='mb-3'>
               <Form.Control
                 type='text'
-                placeholder='Full Name'
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className='mb-3'>
-              <Form.Control
-                type='text'
-                placeholder='Email'
+                placeholder='Your Email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

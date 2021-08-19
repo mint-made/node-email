@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
 const app = express();
@@ -29,8 +30,8 @@ app.post('/api/email', (req, res) => {
   });
 
   const mailOptions = {
-    from: req.body.email,
-    to: 'thomaskupai@gmail.com',
+    from: 'Node Email',
+    to: req.body.email,
     subject: `Message from ${req.body.email}: ${req.body.subject}`,
     text: req.body.message,
   };
@@ -46,5 +47,27 @@ app.post('/api/email', (req, res) => {
   });
 });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`server running on port:${PORT}`));
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+} else {
+  app.use('/apidocs', express.static(path.join(__dirname, '/apidoc')));
+  app.get('/apidocs', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'apidoc', 'index.html'));
+  });
+
+  app.get('/', (req, res) => {
+    res.send('API is running....');
+  });
+}
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () =>
+  console.log(`server running in ${process.env.NODE_ENV} mode on ${PORT}`)
+);
