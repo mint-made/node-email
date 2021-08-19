@@ -15,6 +15,10 @@ function App() {
   });
   const formSubmitHandler = async (e) => {
     e.preventDefault();
+    if (!email || !subject || !message) {
+      alert('Please enter an Email, Subject & Message');
+      return;
+    }
     const formData = {
       email,
       subject,
