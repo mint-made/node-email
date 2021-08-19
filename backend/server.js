@@ -56,11 +56,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
   );
 } else {
-  app.use('/apidocs', express.static(path.join(__dirname, '/apidoc')));
-  app.get('/apidocs', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'apidoc', 'index.html'));
-  });
-
   app.get('/', (req, res) => {
     res.send('API is running....');
   });
