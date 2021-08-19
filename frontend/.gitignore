@@ -1,9 +1,7 @@
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
-/node_modules/
 /.pnp
 .pnp.js
 
@@ -11,16 +9,11 @@
 /coverage
 
 # production
-/frontend/build
-
-# ApiDoc documentation
-/apidoc
-/backend/apidoc
+/build
 
 # misc
 .DS_Store
 .env.local
-.env
 .env.development.local
 .env.test.local
 .env.production.local
