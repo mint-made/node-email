@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
+import axios from 'axios';
 
 function App() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const formSubmitHandler = (e) => {
+  const formSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log({
+    const formData = {
       fullName,
       email,
       subject,
       message,
-    });
+    };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await axios.post(`/api/email`, formData, config);
+    console.log(response);
   };
 
   return (
@@ -34,7 +43,7 @@ function App() {
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Control
-                type='email'
+                type='text'
                 placeholder='Email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
