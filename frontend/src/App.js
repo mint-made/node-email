@@ -1,24 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
 
 function App() {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log({
+      fullName,
+      email,
+      subject,
+      message,
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container className='p-1'>
+        <p className='text-center'>Sending Emails with Node</p>
+
+        <Container className='p-1 border rounded' style={{ maxWidth: '600px' }}>
+          <h5>Contact Form </h5>
+          <Form onSubmit={(e) => formSubmitHandler(e)}>
+            <Form.Group className='mb-3'>
+              <Form.Control
+                type='text'
+                placeholder='Full Name'
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className='mb-3'>
+              <Form.Control
+                type='email'
+                placeholder='Email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className='mb-3'>
+              <Form.Control
+                type='text'
+                placeholder='Subject'
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className='mb-3'>
+              <Form.Control
+                as='textarea'
+                placeholder='Message'
+                rows={3}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </Form.Group>
+            <Button type='submit'>Send</Button>
+          </Form>
+        </Container>
+      </Container>
+    </>
   );
 }
 

@@ -1,0 +1,88 @@
+// Bootstrap Theme with BootSwatch LUX theme
+
+// Import Bootstrap/Bootswatch files
+
+@import './variables';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import './bootswatch';
+
+// Custom CSS rules here
+
+main {
+  min-height: 80vh;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem, 0;
+}
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.rating span {
+  margin: 0.1rem;
+}
+.border-3 {
+  border-width: 3px !important;
+}
+.border-bottom-3 {
+  border-bottom: 3px solid #eceeef !important;
+}
+.border-brand {
+  border-color: #343a40 !important;
+}
+.btn-circle-btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  font-size: 8px;
+  text-align: center;
+}
+
+/*Carousel*/
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+.carousel-caption {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-caption h2 {
+  color: #fff;
+}
+
+.homepage-carousel {
+  height: 300px;
+  padding: 30px;
+  margin: 40px;
+  border-radius: 50%;
+}
+
+.carousel a {
+  margin: 0 auto;
+}
+
+.product-screen-carousel .carousel-control-next,
+.product-screen-carousel .carousel-control-prev,
+.product-screen-carousel .carousel-indicators {
+  filter: invert(1) grayscale(100);
+}
+
+input,
+textarea,
+select {
+  border: 1px solid #ced4da !important;
+  border-radius: 0.25rem !important;
+}
