@@ -13,14 +13,24 @@ app.post('/api/email', (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
+      type: 'OAuth2',
       user: process.env.EMAIL,
       pass: process.env.WORD,
+      clientId: process.env.OAUTH_CLIENTID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
     },
+  });
+
+  transporter.verify((err, success) => {
+    err
+      ? console.log(err)
+      : console.log(`=== Server is ready to take messages: ${success} ===`);
   });
 
   const mailOptions = {
     from: req.body.email,
-    to: process.env.EMAIL,
+    to: 'thomaskupai@gmail.com',
     subject: `Message from ${req.body.email}: ${req.body.subject}`,
     text: req.body.message,
   };
